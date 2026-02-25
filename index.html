@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>极客代码空间</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: #00FF00;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            border: 1px solid #00FF00;
+            padding: 30px;
+            box-shadow: 0 0 15px #00FF00;
+        }
+
+        /* 重点：设置光标闪烁效果 */
+        h1 {
+            border-bottom: 2px solid #00FF00;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            min-height: 1.2em; /* 防止文字蹦出来时页面跳动 */
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            background-color: #00FF00;
+            margin-left: 5px;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* 表格样式保持不变 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            color: #00FF00;
+            border: 1px solid #00FF00;
+        }
+        th, td { border: 1px solid #00FF00; padding: 12px; text-align: left; }
+        th { background-color: #003300; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="typewriter"></h1>
+        
+        <p>你好，访客。我是test web，正在执行代码注入...</p>
+        
+        <p>
+            核心链路: 
+            <a href="https://github.com/idkpppr-G/my-test" target="_blank" style="color: #ADFF2F;">[ACCESS MY-TEST REPOSITORY]</a>
+        </p>
+
+        <h3>Git 策略对比矩阵</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>特性</th>
+                    <th>Merge (合并)</th>
+                    <th>Rebase (变基)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>历史线</td><td>非线性</td><td>完美直线</td></tr>
+                <tr><td>提交记录</td><td>保留所有</td><td>重写历史</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // JavaScript 逻辑：打字机函数
+        const text = "> SYSTEM READY_ LOADING COMPLETE";
+        const speed = 100; // 每个字的间隔时间（毫秒）
+        let i = 0;
+
+        function typeWriter() {
+            if (i < text.length) {
+                // 将字符一个个加到 h1 标签里，并在最后带上一个光标 span
+                document.getElementById("typewriter").innerHTML = text.substring(0, i + 1) + '<span class="cursor"></span>';
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+
+        // 页面加载完成后立即启动执行
+        window.onload = typeWriter;
+    </script>
+
+</body>
+</html>
